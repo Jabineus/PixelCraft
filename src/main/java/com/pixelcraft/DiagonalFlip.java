@@ -1,3 +1,4 @@
+package com.pixelcraft;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -20,9 +21,10 @@ public class DiagonalFlip extends Converter {
         if (i >= Math.min(width, height)) {
             return;
         }
-        int color = image.getRGB(i, row); //Temporarily stores the color for swapping
-        image.setRGB(i, row, image.getRGB(width - col - 1, height - i -1)); //Swaps each row with its corresponding column
-        image.setRGB(width - col - 1, height - i - 1, color);
+        ARGB color = new ARGB(image.getRGB(i, row)); //Temporarily stores the color for swapping
+        ARGB swapRow = new ARGB(image.getRGB(width - col - 1, height - i -1));
+        image.setRGB(i, row, swapRow.toInt()); //Swaps each row with its corresponding column
+        image.setRGB(width - col - 1, height - i - 1, color.toInt());
         flipRecursiveHelper(image, row, col, i + 1, width, height);
     }
 }

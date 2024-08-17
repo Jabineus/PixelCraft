@@ -1,3 +1,4 @@
+package com.pixelcraft;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -16,7 +17,8 @@ public class CircleCrop extends Converter {
                 if (position > radius) {
                     croppedImage.setRGB(x, y, 0); // Pixel is set to transparent (cropped)
                 } else {
-                    croppedImage.setRGB(x, y, image.getRGB(x, y));
+                    ARGB pixel = new ARGB(image.getRGB(x, y));
+                    croppedImage.setRGB(x, y, pixel.toInt());
                 }
             }
         }

@@ -1,6 +1,7 @@
+package com.pixelcraft;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.awt.Color;
+
 
 public class PopArt extends Converter {
     @Override
@@ -10,13 +11,13 @@ public class PopArt extends Converter {
         //Iterates through each pixel
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                Color pixel = new Color(image.getRGB(x, y));
+                ARGB pixel = new ARGB(image.getRGB(x, y));
 
-                int red = popColor(pixel.getRed()); //Calculates each component for rgb
-                int green = popColor(pixel.getGreen());
-                int blue = popColor(pixel.getBlue());
-                Color newPixel = new Color(red, green, blue);
-                poppedImage.setRGB(x, y, newPixel.getRGB());
+                int red = popColor(pixel.red); //Calculates each component for rgb
+                int green = popColor(pixel.green);
+                int blue = popColor(pixel.blue);
+                ARGB newPixel = new ARGB(pixel.alpha, red, green, blue);
+                poppedImage.setRGB(x, y, newPixel.toInt());
             }
         }
         return poppedImage;
