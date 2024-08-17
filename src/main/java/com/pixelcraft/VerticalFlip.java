@@ -1,3 +1,4 @@
+package com.pixelcraft;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -13,14 +14,15 @@ public class VerticalFlip extends Converter {
         if (top >= bottom) { //Base case: stopping swapping the rows when the top and bottom ones meet
             return;
         }
-        int[] topRowPixels = new int[width]; //Creates arrays to store all pixels in the top & bottom rows
-        int[] bottomRowPixels = new int[width];
+        for (int x = 0; x < width; x++) {
+            // Get the top and bottom row pixels
+            ARGB topPixel = new ARGB(originalImg.getRGB(x, top));
+            ARGB bottomPixel = new ARGB(originalImg.getRGB(x, bottom));
 
-        originalImg.getRGB(0, top, width, 1, topRowPixels, 0, width); // Copies the pixels from the top and bottom rows
-        originalImg.getRGB(0, bottom, width, 1, bottomRowPixels, 0, width);
-
-        originalImg.setRGB(0, top, width, 1, bottomRowPixels, 0, width);//Switches the top & bottom row pixels
-        originalImg.setRGB(0, bottom, width, 1, topRowPixels, 0, width);
+            // Switch the pixels
+            originalImg.setRGB(x, top, bottomPixel.toInt());
+            originalImg.setRGB(x, bottom, topPixel.toInt());
+        }
         flipVertical(originalImg, top + 1, bottom - 1, width);
     }
 }

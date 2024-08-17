@@ -1,6 +1,6 @@
+package com.pixelcraft;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.awt.Color;
 
 public class Swirl extends Converter {
     @Override
@@ -26,8 +26,8 @@ public class Swirl extends Converter {
                     //The pixel's color is set to the color of the original image with the moved coordinates
                     //if the moved pixel is within the image size
                     if ((moveY >= 0 && moveY < height) && (moveX >= 0 && moveX < width)) {
-                        Color pixel = new Color(image.getRGB(moveX, moveY), true);
-                        swirledImage.setRGB(w, h, pixel.getRGB());
+                        ARGB pixel = new ARGB(image.getRGB(moveX, moveY));
+                        swirledImage.setRGB(w, h, pixel.toInt());
                     }
                 }else{
                     swirledImage.setRGB(w, h, image.getRGB(w, h));
