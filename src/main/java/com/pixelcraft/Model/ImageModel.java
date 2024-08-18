@@ -2,6 +2,8 @@ package com.pixelcraft.Model;
 
 import com.pixelcraft.*;
 import javafx.scene.image.WritableImage;
+
+import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,6 +15,10 @@ public class ImageModel implements Subject{
      private BufferedImage originalImage;
      private BufferedImage modifiedImage;
     
+     public ImageModel() {
+        this.observers = new ArrayList<>();
+    }
+
     @Override
     public void addObserver(Observer observer) {
         observers.add(observer);
