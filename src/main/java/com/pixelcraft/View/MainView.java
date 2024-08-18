@@ -18,6 +18,7 @@ public class MainView implements Observer{
 
     private Button applyEffectButton;
     private Button saveButton;
+    private Button loadImageButton;
     private ComboBox<String> converterOptions;
 
     public MainView(Stage stage) {
@@ -28,9 +29,12 @@ public class MainView implements Observer{
     private void createUI() {
         this.applyEffectButton = new Button("Apply Effect");
         this.saveButton = new Button("Save Image");
+        this.loadImageButton = new Button("Upload Image");
         this.converterOptions = new ComboBox<>();
 
         VBox layout = new VBox(10);
+        layout.getChildren().add(loadImageButton);
+        layout.getChildren().add(converterOptions);
         layout.getChildren().add(applyEffectButton);
         layout.getChildren().add(saveButton);
         
@@ -49,6 +53,8 @@ public class MainView implements Observer{
     public Button getSaveButton() {
         return saveButton;
     }
+
+    public Button getLoadImageButton() {return loadImageButton;}
 
     public String getSelectedConverter() {
         return converterOptions.getValue();
